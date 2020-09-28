@@ -1,10 +1,14 @@
 package com.board.board.service;
 
-import com.board.board.domain.Board;
+import com.board.board.domain.board.Board;
+import com.board.board.domain.board.Dto.BoardResponseFindAllDto;
 import com.board.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,5 +28,18 @@ public class BoardService {
                 );
 
         return findBoard;
+    }
+
+    public List<BoardResponseFindAllDto> findAll_to_Dto() {
+        List<Board> boards = boardRepository.findAll();
+
+        List<BoardResponseFindAllDto> responseDtos = boards.stream()
+                .map(board -> BoardResponseFindAllDto.builder()
+                        .id(board.getId())
+                        .title(board.getTitle())
+                        .build())
+                .collect(Collectors.toList());
+
+        return responseDtos;
     }
 }
