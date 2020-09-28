@@ -29,6 +29,14 @@ public class Post {
     @JoinColumn(name = "posts")
     private Board board;
 
+    /***
+     * 연관관계 설정
+     */
+    public void set_relation_with_board(Board board){
+        board.getPosts().add(this);
+        this.board = board;
+    }
+
     @Builder
     public Post(String title, String author, Long hit) {
         this.title = title;
