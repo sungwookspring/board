@@ -1,5 +1,9 @@
 package com.board.board.domain;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +12,8 @@ import java.util.List;
  * 게시판 엔티티
  */
 @Entity
+@Getter
+@NoArgsConstructor
 @Table(name = "BOARD")
 public class Board {
     @Id
@@ -20,4 +26,9 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private List<Post> posts = new ArrayList<>();
+
+    @Builder
+    public Board(String title) {
+        this.title = title;
+    }
 }
