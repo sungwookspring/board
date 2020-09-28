@@ -1,5 +1,6 @@
 package com.board.board.domain;
 
+import com.board.board.domain.board.Board;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,5 +1,6 @@
-package com.board.board.domain;
+package com.board.board.domain.board;
 
+import com.board.board.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
