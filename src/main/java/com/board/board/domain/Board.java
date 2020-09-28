@@ -23,8 +23,7 @@ public class Board {
 
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
+    @OneToMany(mappedBy = "board")
     private List<Post> posts = new ArrayList<>();
 
     @Builder

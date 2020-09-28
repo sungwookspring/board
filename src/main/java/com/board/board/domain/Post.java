@@ -25,7 +25,8 @@ public class Post {
 
     private Long hit;
 
-    @OneToMany(mappedBy = "posts")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "posts")
     private Board board;
 
     @Builder
