@@ -16,4 +16,13 @@ public class PostService {
     public Long save(Post post){
         return postRepository.save(post).getId();
     }
+
+    public Post findById(Long id){
+        Post findPost = postRepository.findById(id)
+                .orElseThrow(
+                        () -> new IllegalStateException("존재하지 않은 post")
+                );
+
+        return  findPost;
+    }
 }

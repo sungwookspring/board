@@ -16,4 +16,13 @@ public class BoardService {
     public Long save(Board board){
         return boardRepository.save(board).getId();
     }
+
+    public Board findById(Long saveId) {
+        Board findBoard = boardRepository.findById(saveId)
+                .orElseThrow(
+                        () -> new IllegalStateException("존재하지 않은 board")
+                );
+
+        return findBoard;
+    }
 }
