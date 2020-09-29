@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class default_controller {
     private final BoardService boardService;
-    private final PostService postService;
 
     @GetMapping("/")
     public String index(Model model){
