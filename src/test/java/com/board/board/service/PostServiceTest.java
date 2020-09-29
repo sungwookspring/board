@@ -2,7 +2,7 @@ package com.board.board.service;
 
 
 import com.board.board.domain.board.Board;
-import com.board.board.domain.Post;
+import com.board.board.domain.post.Post;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
