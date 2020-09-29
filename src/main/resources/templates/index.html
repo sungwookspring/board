@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>index</title>
@@ -9,9 +9,11 @@
     <header>
     </header>
 
-    <section class="left-menu">
-        <nav class="side-nav">
-
+    <section class="left-menu-group">
+        <nav class="left-nav">
+            <ul th:each="board :${boards}">
+                <li th:text="${board.title}"></li>
+            </ul>
         </nav>
 
     </section>
