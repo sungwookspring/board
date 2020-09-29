@@ -1,4 +1,4 @@
-package com.board.board.domain;
+package com.board.board.domain.post;
 
 import com.board.board.domain.board.Board;
 import lombok.Builder;
