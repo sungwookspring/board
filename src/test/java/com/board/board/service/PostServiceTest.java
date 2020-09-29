@@ -2,6 +2,7 @@ package com.board.board.service;
 
 
 import com.board.board.domain.board.Board;
+import com.board.board.domain.post.Dto.PostResponseFindByIdDto;
 import com.board.board.domain.post.Post;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -23,13 +24,13 @@ public class PostServiceTest {
     @Test
     public void 게시글생성(){
         //given
-        Post post = create_post("테스트 타이틀", "테스트 작가", 1L);
+        Post post = create_post("테스트 타이틀", "테스트 작가", "테스트 내용", 1L);
     }
 
     @Test
     public void 게시판생성_게시글생성_연결(){
         //given
-        Post post = create_post("테스트 타이틀", "테스트 작가", 1L);
+        Post post = create_post("테스트 타이틀", "테스트 작가", "테스트 내용",1L);
         Board board = Board.builder()
                 .title("테스트 게시판")
                 .build();
@@ -47,10 +48,27 @@ public class PostServiceTest {
         Assertions.assertThat(first_post.getHit()).isEqualTo(post.getHit());
     }
 
-    private Post create_post(String title, String author, Long hit){
+    @Test
+    public void 게시글조회(){
+        //given
+        Post post = create_post("테스트 타이틀", "테스트 작가", "테스트 내용", 1L);
+
+        //when
+        PostResponseFindByIdDto dto = postService.findById_To_Dto(post.getId());
+
+        //then
+        Assertions.assertThat(dto.getId()).isEqualTo(post.getId());
+        Assertions.assertThat(dto.getTitle()).isEqualTo(post.getTitle());
+        Assertions.assertThat(dto.getContent()).isEqualTo(post.getContent());
+        Assertions.assertThat(dto.getAuthor()).isEqualTo(post.getAuthor());
+        Assertions.assertThat(dto.getHit()).isEqualTo(post.getHit());
+    }
+
+    private Post create_post(String title, String author, String content, Long hit){
         Post post = Post.builder()
                 .title(title)
                 .author(author)
+                .content(content)
                 .hit(hit)
                 .build();
 
