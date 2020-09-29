@@ -2,6 +2,7 @@ package com.board.board.service;
 
 import com.board.board.domain.board.Board;
 import com.board.board.domain.board.Dto.BoardResponseFindAllDto;
+import com.board.board.domain.board.Dto.BoardResponseFindoneWithPostDto;
 import com.board.board.domain.post.Post;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -58,12 +59,12 @@ public class BoardServiceTest {
         postService.set_relation_with_Board(board.getId(), post.getId());
 
         // when
-        Board findBoard = boardService.findOne_with_post(board.getId());
+        List<BoardResponseFindoneWithPostDto> posts = boardService.find_posts_related_board(board.getId());
 
+        System.out.println("결과");
         //then
-        System.out.println(findBoard.getTitle());
-        findBoard.getPosts().forEach(
-                foreach_post -> System.out.println(foreach_post.getTitle() + ", " + foreach_post.getAuthor() + ", " + foreach_post.getHit())
+        posts.forEach(
+                t -> System.out.println(t.getId() + ", " + t.getTitle() + "," + t.getHit())
         );
     }
 
@@ -93,14 +94,13 @@ public class BoardServiceTest {
             postService.set_relation_with_Board(board.getId(), post.getId());
         }
 
-
         // when
-        Board findBoard = boardService.findOne_with_post(board.getId());
+        List<BoardResponseFindoneWithPostDto> posts = boardService.find_posts_related_board(board.getId());
 
+        System.out.println("결과");
         //then
-        System.out.println(findBoard.getTitle());
-        findBoard.getPosts().forEach(
-                foreach_post -> System.out.println(foreach_post.getTitle() + ", " + foreach_post.getAuthor() + ", " + foreach_post.getHit())
+        posts.forEach(
+                t -> System.out.println(t.getId() + ", " + t.getTitle() + "," + t.getHit())
         );
     }
 

@@ -2,6 +2,7 @@ package com.board.board.service;
 
 import com.board.board.domain.board.Board;
 import com.board.board.domain.board.Dto.BoardResponseFindAllDto;
+import com.board.board.domain.board.Dto.BoardResponseFindoneWithPostDto;
 import com.board.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,8 +44,18 @@ public class BoardService {
         return responseDtos;
     }
 
-    public Board findOne_with_post(Long board_id){
+    public List<BoardResponseFindoneWithPostDto> find_posts_related_board(Long board_id){
         Board findBoard = boardRepository.findOneWithPost(board_id);
-        return findBoard;
+
+        List<BoardResponseFindoneWithPostDto> responses = findBoard.getPosts().stream()
+                .map(post -> BoardResponseFindoneWithPostDto.builder()
+                        .id(post.getId())
+                        .title(post.getTitle())
+                        .hit(post.getHit())
+                        .build())
+                .collect(Collectors.toList());
+
+
+        return responses;
     }
 }
