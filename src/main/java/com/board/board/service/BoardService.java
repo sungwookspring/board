@@ -42,4 +42,9 @@ public class BoardService {
 
         return responseDtos;
     }
+
+    public Board findOne_with_post(Long board_id){
+        Board findBoard = boardRepository.findOneWithPost(board_id);
+        return findBoard;
+    }
 }

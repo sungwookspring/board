@@ -2,6 +2,7 @@ package com.board.board.service;
 
 import com.board.board.domain.board.Board;
 import com.board.board.domain.board.Dto.BoardResponseFindAllDto;
+import com.board.board.domain.post.Post;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,8 @@ import java.util.List;
 public class BoardServiceTest {
     @Autowired
     BoardService boardService;
+    @Autowired
+    PostService postService;
 
     @Test
     public void 게시판생성(){
@@ -32,6 +35,35 @@ public class BoardServiceTest {
         List<BoardResponseFindAllDto> all_to_dto = boardService.findAll_without_post();
 
         all_to_dto.forEach(dto -> System.out.println(dto.getId() + ", " + dto.getTitle()));
+    }
+
+    /***
+     * join fetch test
+     */
+    @Test
+    public void 단건게시판_단건게시글_조회(){
+        //given
+        Post post = Post.builder()
+                .title("테스트 제목11")
+                .author("테스트 작가11")
+                .hit(100L)
+                .build();
+        postService.save(post);
+
+        Board board = Board.builder()
+                .title("테스트 게시판11")
+                .build();
+        boardService.save(board);
+
+        postService.set_relation_with_Board(board.getId(), post.getId());
+
+        // when
+        Board findBoard = boardService.findOne_with_post(board.getId());
+
+        System.out.println(findBoard.getTitle());
+        findBoard.getPosts().forEach(
+                foreach_post -> System.out.println(foreach_post.getTitle() + ", " + foreach_post.getAuthor() + ", " + foreach_post.getHit())
+        );
     }
 
     @Test
