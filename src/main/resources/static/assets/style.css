@@ -1,0 +1,15 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.left-menu-group{
+    border: 0.5rem solid;
+}
+.main-group{
+    display: flex;
+    width: 100%;
+}
+main{
+    border: 0.5rem solid;
+    margin-left: 15px;
+}

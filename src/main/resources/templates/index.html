@@ -2,24 +2,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>index</title>
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 <div class="wrapper">
     <header>
+        <!-- global navbar -->
+        <div class="gnb">
+        </div>
+        <!-- 메인 이미지 -->
+        <div id="front-img">
+            <img src="/imgs/front-img.jpg">
+        </div>
     </header>
 
-    <section class="left-menu-group">
-        <nav class="left-nav">
-            <ul th:each="board :${boards}">
-                <li th:text="${board.title}"></li>
-            </ul>
-        </nav>
+    <div class="main-group">
+        <!-- 왼쪽 메뉴   -->
+        <div class="left-menu-group">
+            <nav class="left-nav">
+                <h1>게시판</h1>
+                <ul th:each="board :${boards}">
+                    <li th:text="${board.title}"></li>
+                </ul>
+            </nav>
+        </div>
 
-    </section>
+        <!-- 메인 콘텐츠   -->
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>게시판 번호</th>
+                        <th>게시판 이름</th>
+                        <th>게시판 조회수</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-    <section class="main-content">
-    </section>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
 </div>
 </body>
 </html>
