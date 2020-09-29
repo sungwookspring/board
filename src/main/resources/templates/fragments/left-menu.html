@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="left-menu" class="left-menu-group">
+    <nav class="left-nav">
+        <h1>게시판</h1>
+        <ul th:each="board :${boards}">
+            <li>
+                <a th:href="@{/board/list/{id} (id=${board.id})}" th:text="${board.title}"></a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+</html>

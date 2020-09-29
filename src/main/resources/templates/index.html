@@ -4,32 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>index</title>
-    <link rel="stylesheet" href="/assets/style.css">
+
+    <th:block th:replace="fragments/config :: header_config"></th:block>
 </head>
 <body>
 <div class="wrapper">
-    <header>
-        <!-- global navbar -->
-        <div class="gnb">
-        </div>
-        <!-- 메인 이미지 -->
-        <div id="front-img">
-            <img src="/imgs/front-img.jpg">
-        </div>
-    </header>
+    <div th:replace="fragments/top :: top"></div>
 
     <div class="main-group">
         <!-- 왼쪽 메뉴   -->
-        <div class="left-menu-group">
-            <nav class="left-nav">
-                <h1>게시판</h1>
-                <ul th:each="board :${boards}">
-                    <li>
-                        <a th:href="@{/board/list/{id} (id=${board.id})}" th:text="${board.title}"></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <div th:replace="fragments/left-menu :: left-menu"></div>
 
         <!-- 메인 콘텐츠   -->
         <main>
