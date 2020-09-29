@@ -24,7 +24,9 @@
             <nav class="left-nav">
                 <h1>게시판</h1>
                 <ul th:each="board :${boards}">
-                    <li th:text="${board.title}"></li>
+                    <li>
+                        <a th:href="@{/board/list/{id} (id=${board.id})}" th:text="${board.title}"></a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -40,7 +42,11 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <tr th:each="post : ${posts}">
+                        <td th:text="${post.id}"></td>
+                        <td th:text="${post.title}"></td>
+                        <td th:text="${post.hit}"></td>
+                    </tr>
                 </tbody>
             </table>
         </main>
