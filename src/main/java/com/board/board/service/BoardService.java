@@ -30,7 +30,7 @@ public class BoardService {
         return findBoard;
     }
 
-    public List<BoardResponseFindAllDto> findAll_to_Dto() {
+    public List<BoardResponseFindAllDto> findAll_without_post() {
         List<Board> boards = boardRepository.findAll();
 
         List<BoardResponseFindAllDto> responseDtos = boards.stream()

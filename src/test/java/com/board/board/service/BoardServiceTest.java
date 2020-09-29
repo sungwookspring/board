@@ -29,7 +29,7 @@ public class BoardServiceTest {
             create_board(title);
         }
 
-        List<BoardResponseFindAllDto> all_to_dto = boardService.findAll_to_Dto();
+        List<BoardResponseFindAllDto> all_to_dto = boardService.findAll_without_post();
 
         all_to_dto.forEach(dto -> System.out.println(dto.getId() + ", " + dto.getTitle()));
     }
