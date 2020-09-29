@@ -60,11 +60,50 @@ public class BoardServiceTest {
         // when
         Board findBoard = boardService.findOne_with_post(board.getId());
 
+        //then
         System.out.println(findBoard.getTitle());
         findBoard.getPosts().forEach(
                 foreach_post -> System.out.println(foreach_post.getTitle() + ", " + foreach_post.getAuthor() + ", " + foreach_post.getHit())
         );
     }
+
+    /***
+     * join fetch test
+     */
+    @Test
+    public void 단건게시판_다수게시글_조회(){
+        Board board = Board.builder()
+                .title("테스트 게시판11")
+                .build();
+        boardService.save(board);
+
+        //given
+        for(int i=0; i<100; i++){
+            String title = "junit테스트글" + Integer.toString(i);
+            String author = "junit테스트작가" + Integer.toString(i);
+            Long hit = Long.valueOf(i);
+
+            Post post = Post.builder()
+                    .title(title)
+                    .author(author)
+                    .hit(hit)
+                    .build();
+            postService.save(post);
+
+            postService.set_relation_with_Board(board.getId(), post.getId());
+        }
+
+
+        // when
+        Board findBoard = boardService.findOne_with_post(board.getId());
+
+        //then
+        System.out.println(findBoard.getTitle());
+        findBoard.getPosts().forEach(
+                foreach_post -> System.out.println(foreach_post.getTitle() + ", " + foreach_post.getAuthor() + ", " + foreach_post.getHit())
+        );
+    }
+
 
     @Test
     public void 중복생성_테스트(){
