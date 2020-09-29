@@ -24,6 +24,9 @@ public class Post {
 
     private String author;
 
+    @Column(length = 1000)
+    private String content;
+
     private Long hit;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,9 +42,10 @@ public class Post {
     }
 
     @Builder
-    public Post(String title, String author, Long hit) {
+    public Post(String title, String author, String content, Long hit) {
         this.title = title;
         this.author = author;
+        this.content = content;
         this.hit = hit;
     }
 }
