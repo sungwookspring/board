@@ -1,12 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <title>게시판 보기</title>
+
+    <th:block th:replace="fragments/config :: header_config"></th:block>
 </head>
 <body>
+<div class="wrapper">
+    <div th:replace="fragments/top :: top"></div>
 
+    <div class="main-group">
+        <!-- 왼쪽 메뉴   -->
+        <div th:replace="fragments/left-menu :: left-menu"></div>
+
+        <!-- 메인 콘텐츠   -->
+        <main>
+            <h1 th:text="${post.title}"></h1>
+            <p th:text="${post.content}"></p>
+        </main>
+    </div>
+</div>
 </body>
 </html>
